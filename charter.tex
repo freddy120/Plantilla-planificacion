@@ -5,6 +5,7 @@
 
 
 
+\usepackage{chemformula}
 
 % El títulos de la memoria, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \ttitle
 \titulo{Racionalización y sistematización de moléculas con alta eficiencia para el sensibilizado de TiO2} 
@@ -17,7 +18,7 @@
 %\posgrado{Maestría en Internet de las cosas}
 
 % Tu nombre, se puede usar el cualquier lugar del documento con el comando \authorname
-\autor{Freddy Rodrigo Mendoza Ticona} 
+\autor{Freddy Mendoza Ticona} 
 
 % El nombre del director y co-director, se puede usar el cualquier lugar del documento con el comando \supname y \cosupname y \pertesupname y \pertecosupname
 \director{Dr. Diego Onna}
@@ -27,8 +28,8 @@
 \pertenenciaCoDirector{FIUBA}
 
 % Nombre del cliente, quien va a aprobar los resultados del proyecto, se puede usar con el comando \clientename y \empclientename
-\cliente{Nombre del cliente}
-\empresaCliente{Empresa del cliente}
+\cliente{Lic. Priscila Vensaus}
+\empresaCliente{UNSAM}
 
 % Nombre y pertenencia de los jurados, se pueden usar el cualquier lugar del documento con el comando \jurunoname, \jurdosname y \jurtresname y \perteunoname, \pertedosname y \pertetresname.
 \juradoUno{Nombre y Apellido (1)}
@@ -38,8 +39,8 @@
 \juradoTres{Nombre y Apellido (3)}
 \pertenenciaJurTres{pertenencia (3)}
  
-\fechaINICIO{30 de abril de 2021}		%Fecha de inicio de la cursada de GdP \fechaInicioName
-\fechaFINALPlan{18 de junio de 2021} 	%Fecha de final de cursada de GdP
+\fechaINICIO{24 de junio de 2021}		%Fecha de inicio de la cursada de GdP \fechaInicioName
+\fechaFINALPlan{19 de agosto de 2021} 	%Fecha de final de cursada de GdP
 \fechaFINALTrabajo{15 de mayo de 2022}	%Fecha de defensa pública del trabajo final
 
 
@@ -92,7 +93,7 @@ Buenos Aires, \fechaInicioName
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en \textcolor{red}{la implementación de un prototipo de un sistema de control de temperatura de un calefón}, y tendrá un presupuesto preliminar estimado de \textcolor{red}{600} hs de trabajo y \textcolor{red}{\$XXX}, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
+Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en el desarrollo de un modelo basado de aprendizaje automático para la predicción de la eficacia de DSSC/DSPEC, y tendrá un presupuesto preliminar estimado de 600hs de trabajo y \$0.00, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -116,8 +117,46 @@ Se adjunta a esta acta la planificación inicial.
 \label{sec:descripcion}
 
 
-\begin{consigna}{red} % El bloque "consigna" se usa para poner texto en rojo y dar una pequeña ayuda sobre cómo completar la sección
+En la actualidad, la mayor parte de la energía consumida globalmente deriva de combustibles fósiles: carbón, petróleo y gas natural. La energía obtenida de estas fuentes no renovables genera el aumento de los niveles de dióxido de carbono (CO2), lo cual es responsable del calentamiento global. El desarrollo de las energías renovables y amigables con el medio ambiente surge como una necesidad clave para nuestra sociedad. En particular, sabemos que la energía solar tiene una potencialidad inmensa: en sólo un día llega a la tierra suficiente energía para alimentar a todo el mundo un año entero. Si bien ya existen desarrollos para captar y utilizar la luz solar, como las celdas solares de silicio que ya se comercializan, todavía tienen distintos puntos donde pueden mejorarse: la eficiencia es relativamente baja, y el proceso de producción no siempre es sustentable. Además, la energía que se obtiene de esta manera depende de las condiciones climáticas y del paso del día y la noche: sólo proveen energía mientras llega la luz del sol. Por lo que se torna importante encontrar una manera de guardar esta energía, por ejemplo, en forma de combustibles, y que estos sean además amigables con el medio ambiente.
 
+Las celdas solares sensibilizadas por colorantes (DSSC, por sus siglas en inglés -dye sensitized solar cells-) y las celdas fotoelectroquímicas sensibilizadas (DSPEC) son una alternativa prometedora para el aprovechamiento de la luz solar (Figura \ref{fig:diagCeldas}), inspiradas en el proceso de fotosíntesis. Las primeras, se basan en la interacción de la luz solar con una molécula de colorante, que está adsorbida sobre un material semiconductor, típicamente dióxido de titanio (\ch{TiO2}). La molécula absorbe luz y pasa a un estado excitado, desde el cual transfiere un electrón al dióxido de titanio. Los electrones se mueven desde allí hasta el otro extremo del circuito, proveyendo así la energía eléctrica. En el otro electrodo, los electrones interactúan con la solución de electrolito, y mediante reacciones químicas son transportados hacia la molécula de colorante, llevándolo a su estado inicial. En el caso de las celdas fotoelectroquímicas sensibilizadas, el proceso es similar, pero en lugar de generarse energía eléctrica, esta se guarda en forma de enlaces químicos dentro de moléculas de combustible, por ejemplo, hidrógeno.
+
+
+
+
+\begin{figure}[htpb]
+\centering 
+\includegraphics[width=.8\textwidth]{./Figuras/celdas.pdf}
+\caption{Izquierda: Celda solar sensibilizada por colorante. Derecha: celda
+fotoelectroquímica sensibilizada por colorante.}
+\label{fig:diagCeldas}
+\end{figure}
+
+El objetivo general de este proyecto es identificar y clasificar moléculas con aplicación en celdas solares sensibilizadas y/o fotoelectrocatalíticas en electrodos de dióxido de titanio (\ch{TiO2}) mediante modelos cuantitativos que lleven a definir de forma integral qué características deben tener para ser eficientes. La hipótesis es la existencia de una función desconocida que relaciona las variables fisicoquímicas y estructurales con el funcionamiento de los dispositivos y que es posible aproximarla usando aprendizaje automático. 
+
+El desafío es obtener modelos interpretables que establezcan correlaciones entre eficiencia del proceso con las variables del sistema. Sobre esta base, se espera llegar a un modelo que prediga o clasifique el resultado de un dispositivo a partir de condiciones iniciales determinadas.
+
+Objetivos específicos:
+\begin{itemize}
+	\item Construir una base de datos a partir de resultados previos (grupo de trabajo y datos
+bibliográficos).
+	\item Generar visualizaciones que permitan hacer una exploración inicial de los datos.
+	\item Relacionar las variables del sistema con el rendimiento de los dispositivos a partir de
+modelos estadísticos y de aprendizaje automático.
+\end{itemize}
+
+
+En la Figura \ref{fig:diagml} se presenta un diagrama de bloques general de los pasos a seguir para alcanzar un modelo estadístico y usando métodos de aprendizaje automático, que nos ayude a predecir y/o clasificar la eficiencia del proceso en celdas solares sensibilizadas y/o fotoelectrocatalíticas en electrodos de dióxido de titanio (\ch{TiO2}).
+
+\begin{figure}[htpb]
+\centering 
+\includegraphics[width=.8\textwidth]{./Figuras/bloques.pdf}
+\caption{Diagrama de bloques de los pasos a desarrollar}
+\label{fig:diagml}
+\end{figure}
+
+
+\begin{consigna}{red} 
 El objetivo es que el lector en una o dos páginas entienda de qué se trata el proyecto y cuáles son sus desafíos, su motivación y su importancia.
 
 Se debe destacar claramente cuál es el valor que agrega el proyecto a realizar. ``El presente proyecto se destaca especialmente por incorporar tal cosa... Esto lo diferencia de otros sistemas similares en que ...''
@@ -147,25 +186,12 @@ La descripción técnica-conceptual \textbf{debe incluir al menos un diagrama en
 \vspace{25px}
 
 El tamaño de la tipografía en TODAS las figuras debe ser adecuado para que NO pase lo que ocurre acá, donde el lector debe esforzarse para poder leer el texto. Los colores usados en el diagrama deben ser adecuados, tal que ayuden a comprender mejor el diagrama, preferentemente en la gama de colores pastel.
-\end{consigna}
 
+\end{consigna}
 
 \section{2. Identificación y análisis de los interesados}
 \label{sec:interesados}
 
-\begin{consigna}{red} 
-Nota: (borrar esto y todas las consignas en color rojo antes de entregar este documento).
- 
-Es inusual que una misma persona esté en más de un rol, incluso en proyectos chicos.
- 
-Si se considera que una persona cumple dos o más roles, entonces sólo dejarla en el rol más importante. Por ejemplo:
-
-\begin{itemize}
-\item Si una persona es Cliente pero también colabora u orienta, dejarla solo como Cliente.
-\item Si una persona es el Responsable, no debe ser colocado también como Miembro del equipo.
-\end{itemize}
-
-Pero en cambio sí es usual que el Cliente y el Auspiciante sean el mismo, por ejemplo.
 
 \begin{table}[ht]
 %\caption{Identificación de los interesados}
@@ -174,18 +200,30 @@ Pero en cambio sí es usual que el Cliente y el Auspiciante sean el mismo, por e
 \hline
 \rowcolor[HTML]{C0C0C0} 
 Rol           & Nombre y Apellido & Organización 	& Puesto 	\\ \hline
-Auspiciante   &                   &              	&        	\\ \hline
+%Auspiciante   &                   &              	&        	\\ \hline
 Cliente       & \clientename      &\empclientename	&        	\\ \hline
-Impulsor      &                   &              	&        	\\ \hline
+%Impulsor      &                   &              	&        	\\ \hline
 Responsable   & \authorname       & FIUBA        	& Alumno 	\\ \hline
-Colaboradores &                   &              	&        	\\ \hline
+Colaboradores & Dr. Adrian Roitberg \newline
+Dr. Sebastian Fernández Alberti  &        UFl - USA \newline
+																		  UNQ      	&      -  	\\ \hline
 Orientador    & \supname	      & \pertesupname 	& Director Trabajo final \\ \hline
-Equipo        & miembro1 \newline 
-				miembro2          &              	&        	\\ \hline
-Opositores    &                   &              	&        	\\ \hline
-Usuario final &                   &              	&        	\\ \hline
+%Equipo        & miembro1 \newline 
+%				miembro2          &              	&        	\\ \hline
+%Opositores    &                   &              	&        	\\ \hline
+Usuario final &  Instituto de Química, Física de Materiales, Medio Ambiente y Energía - FCEN - UBA e Instituto de Nanosistemas - UNSAM                 &  -            	&  -      	\\ \hline
 \end{tabularx}
 \end{table}
+
+
+\begin{consigna}{red}
+
+Es inusual que una misma persona este en mas de un rol, incluso en proyectos chicos.
+Si se considera que una persona cumple dos o mas roles, entonces solo dejarla en el rol mas
+importante. Por ejemplo:
+Si una persona es Cliente pero también colabora u orienta, dejarla solo como Cliente.
+Si una persona es el Responsable, no debe ser colocado también como Miembro del equipo.
+Pero en cambio s\'i es usual que el Cliente y el Auspiciante sean el mismo, por ejemplo.
 
 El Director suele ser uno de los Orientadores.
 
@@ -201,7 +239,6 @@ Por ejemplo:
 	\item Equipo: Juan Perez, suele pedir licencia porque tiene un familiar con una enfermedad. Planificar considerando esto.
 	\item Orientador: María Gómez va a poder ayudar mucho con la definición de los requerimientos.
 \end{itemize}
-
 \end{consigna}
 
 
